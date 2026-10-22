@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>의정부시 청소년 생활문제 해결 아이디어 공모전</title>
+<style>
+/* 「모두의 자리」 — 흰 바탕 · 청록 글자 9.2:1 · 해바라기는 글자에 쓰지 않음 · 보라 9.9:1
+   구형 크롬북: 웹 글꼴·그림자·움직임 없음, 시스템 Noto Sans */
+:root{
+  --teal:#0B4F5C; --tealw:#E3F1F2; --tealm:#B9DADD;
+  --sun:#FFC93C; --sunw:#FFF4D6;
+  --plum:#5B2A86; --plumw:#F1EBF7;
+  --ink:#1B1B24; --gray:#4A4A57; --border:#6E7887; --rule:#D5DAE1; --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--white);color:var(--ink);
+  font-family:"Noto Sans KR","Noto Sans CJK KR","Malgun Gothic","맑은 고딕",sans-serif;
+  font-size:17px;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%}
+b,strong{font-weight:700}
+a{color:var(--teal)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--sun)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--sun);color:var(--ink);padding:10px 16px;font-weight:700;z-index:5}
+.skip:focus{left:12px}
+
+/* 머리 */
+.top{background:var(--teal);color:#fff}
+.top .in{max-width:1180px;margin:0 auto;padding:18px 24px 0}
+.dots{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.dots i{display:block;border-radius:50%;background:#fff}
+.dots i.s{background:var(--sun)} .dots i.m{background:var(--tealm)}
+.kicker{font-size:14px;font-weight:700;color:var(--sun);margin:0}
+h1{margin:2px 0 14px;font-size:26px;line-height:1.35}
+
+/* 탭 */
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{font:inherit;font-size:17px;font-weight:700;cursor:pointer;min-height:52px;
+  padding:10px 20px;border:0;border-radius:12px 12px 0 0;background:transparent;color:#fff;
+  display:flex;align-items:center;gap:10px}
+nav button .no{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;
+  border:2px solid #fff;font-size:14px}
+nav button[aria-current="true"]{background:#fff;color:var(--teal)}
+nav button[aria-current="true"] .no{background:var(--teal);color:#fff;border-color:var(--sun)}
+nav button:hover:not([aria-current="true"]){background:#0e6272}
+
+main{max-width:1180px;margin:0 auto;padding:26px 24px 40px}
+section[hidden],[hidden]{display:none!important}
+h2{font-size:22px;line-height:1.4;margin:34px 0 12px;color:var(--teal)}
+h2:first-child{margin-top:0}
+h3{font-size:18px;margin:0 0 6px}
+p{margin:6px 0}
+.lead-in{font-size:17px;color:var(--gray);margin:0 0 16px}
+
+/* 상자 */
+.box{border:1px solid var(--rule);border-radius:14px;padding:18px 20px;background:#fff}
+.hero{background:var(--tealw);border:0;border-radius:16px;padding:24px 28px}
+.hero p.big{font-size:22px;font-weight:700;line-height:1.55;margin:0}
+.hero .note{margin-top:12px;font-size:15px;color:var(--gray)}
+.pill{display:inline-block;font-size:14px;font-weight:700;border-radius:999px;padding:3px 12px;line-height:1.5}
+.pill.teal{background:var(--teal);color:#fff}
+.pill.sun{background:var(--sun);color:var(--ink)}
+.pill.plum{background:var(--plum);color:#fff}
+.pill.line{border:2px solid var(--border);color:var(--gray);background:#fff}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.q{display:flex;gap:14px;align-items:flex-start}
+.q .ic{flex:none;width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px}
+.q h3{color:var(--teal)}
+.q p{margin:0;font-size:16px}
+
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rule{background:var(--sunw);border:2px solid var(--sun);border-radius:14px;padding:16px 18px}
+.rule .pill{margin-bottom:8px}
+.rule > b{display:block;font-size:18px;margin-bottom:4px}
+.rule span{font-size:16px;color:var(--ink)}
+
+details{border:1px solid var(--rule);border-radius:12px;margin-bottom:8px;background:#fff}
+summary{cursor:pointer;font-weight:700;font-size:17px;min-height:52px;padding:12px 18px;list-style:none;display:flex;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--teal);color:var(--teal);
+  display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1}
+details[open] summary::before{content:"−";background:var(--teal);color:#fff}
+details p{margin:0;padding:0 18px 16px 58px;font-size:16px}
+
+/* 사람 카드 목록 */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pcard{text-align:left;font:inherit;cursor:pointer;background:#fff;color:var(--ink);
+  border:2px solid var(--rule);border-radius:14px;padding:16px;min-height:170px;display:flex;flex-direction:column;gap:6px}
+.pcard:hover{border-color:var(--teal);background:var(--tealw)}
+.pcard .row{display:flex;align-items:center;gap:10px}
+.pcard .n{flex:none;width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;
+  display:flex;align-items:center;justify-content:center;font-size:17px}
+.pcard .who{font-size:18px;font-weight:700;line-height:1.35}
+.pcard .what{font-size:15px;color:var(--gray);line-height:1.5;flex:1}
+.pcard .tag{align-self:flex-start;font-size:13px}
+.howto{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 18px;padding:0;list-style:none;counter-reset:h}
+.howto li{counter-increment:h;display:flex;gap:10px;align-items:center;background:var(--tealw);border-radius:12px;padding:12px 14px;font-size:16px}
+.howto li::before{content:counter(h);flex:none;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.callout{margin-top:18px;background:var(--plumw);border:2px solid var(--plum);border-radius:14px;padding:14px 18px;font-size:16px}
+.callout .pill{margin-right:8px}
+
+/* 카드 자세히 */
+.back{font:inherit;font-size:16px;font-weight:700;cursor:pointer;min-height:48px;padding:8px 18px;margin-bottom:16px;
+  background:#fff;color:var(--teal);border:2px solid var(--teal);border-radius:12px}
+.back:hover{background:var(--tealw)}
+.dhead{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+.dhead .n{flex:none;width:60px;height:60px;border-radius:50%;background:var(--teal);color:#fff;border:4px solid var(--sun);
+  font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.dhead h2{margin:0;color:var(--ink);font-size:24px}
+.dhead p{margin:2px 0 0;color:var(--gray);font-size:16px}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.step-t{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:var(--teal);margin:0 0 6px}
+.step-t .no{flex:none;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;font-size:15px;display:flex;align-items:center;justify-content:center}
+.step-d{margin:0 0 12px;font-size:16px;color:var(--gray)}
+ol.day{list-style:none;margin:0;padding:0;border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+ol.day li{display:grid;grid-template-columns:92px 1fr;border-top:1px solid var(--rule)}
+ol.day li:first-child{border-top:0}
+ol.day .t{background:var(--tealw);color:var(--teal);font-weight:700;padding:12px 14px;font-size:16px}
+ol.day .d{padding:12px 16px;font-size:16px}
+.num{border-radius:14px;padding:18px 20px;margin-bottom:22px;border:2px solid var(--teal);background:#fff}
+.num.blank{border-color:var(--sun);background:var(--sunw)}
+.num .pill{margin-bottom:10px}
+.num .big{font-size:19px;font-weight:700;line-height:1.6}
+.num .src{font-size:15px;color:var(--gray);margin-top:10px}
+.num .src b{color:var(--ink)}
+#dh:focus{outline:none;box-shadow:none}
+.frame .hint{margin:0 0 4px;font-size:16px;font-weight:700;color:var(--plum)}
+.frame{border:2px solid var(--plum);background:var(--plumw);border-radius:14px;padding:16px 18px}
+.frame .ln{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:17px;font-weight:700}
+.frame .lb{flex:0 0 42%;color:var(--teal)}
+.frame .bl{flex:1;height:30px;border-bottom:2px dashed var(--plum)}
+.frame .ex{margin-top:12px;font-size:15px}
+.frame .ex b{color:var(--plum)}
+.darknote{margin-top:14px;background:var(--teal);color:#fff;border-radius:14px;padding:14px 18px;font-size:16px}
+
+/* 오늘 할 일 */
+.hours{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.hours button{font:inherit;cursor:pointer;min-height:56px;padding:8px 18px;border-radius:14px;border:2px solid var(--rule);
+  background:#fff;color:var(--ink);text-align:left;display:flex;flex-direction:column;justify-content:center}
+.hours button b{font-size:17px} .hours button span{font-size:14px;color:var(--gray)}
+.hours button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.hours button[aria-pressed="true"] span{color:#fff}
+.hours button:hover:not([aria-pressed="true"]){border-color:var(--teal)}
+ol.todo{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.todo li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start;
+  border:1px solid var(--rule);border-radius:14px;padding:14px 18px;margin-bottom:10px;background:#fff}
+ol.todo li::before{content:counter(s);width:40px;height:40px;border-radius:50%;border:2px solid var(--teal);color:var(--teal);
+  font-weight:700;display:flex;align-items:center;justify-content:center;font-size:17px}
+ol.todo li > div > b{display:block;font-size:18px}
+ol.todo li > div > span{display:block;font-size:16px;color:var(--gray)}
+a.pad{display:inline-flex;align-items:center;min-height:44px;margin:8px 8px 0 0;padding:6px 16px;border-radius:10px;background:var(--teal);color:#fff;font-weight:700;font-size:15px;text-decoration:none}
+a.pad:hover{background:#0e6272}
+ol.todo .where{font-style:normal;display:inline-block;margin-top:6px;font-size:14px;font-weight:700;color:var(--plum);background:var(--plumw);border-radius:8px;padding:2px 10px}
+.side{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.keys{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0}
+kbd{font:inherit;font-weight:700;font-size:16px;border:2px solid var(--ink);border-bottom-width:4px;border-radius:8px;padding:4px 12px;background:#fff}
+table.plan{border-collapse:collapse;width:100%;border:1px solid var(--rule)}
+table.plan th,table.plan td{text-align:left;padding:12px 16px;border-top:1px solid var(--rule);font-size:16px;vertical-align:top}
+table.plan th{width:110px;background:var(--tealw);color:var(--teal)}
+
+footer{max-width:1180px;margin:0 auto;padding:14px 24px 30px;border-top:1px solid var(--rule);font-size:14px;color:var(--gray)}
+
+@media (max-width:1000px){
+  .grid3,.rules,.howto{grid-template-columns:1fr}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .detail,.side{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .cards{grid-template-columns:1fr}
+  h1{font-size:21px}
+  nav button{padding:10px 12px;font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 바로 가기</a>
+
+<header class="top">
+  <div class="in">
+    <div class="dots" aria-hidden="true">
+      <i class="s" style="width:14px;height:14px"></i><i style="width:22px;height:22px"></i><i class="m" style="width:12px;height:12px"></i>
+      <i class="s" style="width:28px;height:28px"></i><i style="width:16px;height:16px"></i><i class="m" style="width:14px;height:14px"></i>
+      <i style="width:24px;height:24px"></i><i class="s" style="width:16px;height:16px"></i>
+    </div>
+    <p class="kicker">3학년 기술 · 9~12차시 프로젝트</p>
+    <h1>의정부시 청소년 생활문제 해결 아이디어 공모전</h1>
+    <nav aria-label="사이트 메뉴">
+      <button id="t1" aria-current="true" onclick="go(1)"><span class="no">1</span>공모전이 뭐예요?</button>
+      <button id="t2" aria-current="false" onclick="go(2)"><span class="no">2</span>사람 카드 8장</button>
+      <button id="t3" aria-current="false" onclick="go(3)"><span class="no">3</span>시간별 할 일</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- 1 공모전 -->
+<section id="s1" aria-labelledby="h-s1">
+  <h2 id="h-s1" class="sr" style="position:absolute;left:-9999px">공모전이 뭐예요?</h2>
+  <div class="hero">
+    <p class="big">의정부시에서 “이런 거 있으면 좋겠다” 하는 공모전을 열었어요.<br>
+    여러분은 거기 나가는 <span style="background:var(--sun);padding:0 6px;border-radius:6px">청소년 개발자</span>예요.<br>
+    네 시간 동안 <b>설계서 하나</b>를 채워서 내면 돼요.</p>
+    <p class="note">진짜 공모전은 아니고 수업에서 만든 상황이에요. 시청에 내지는 않아요.</p>
+  </div>
+
+  <h2>여섯 가지만 알면 돼요</h2>
+  <div class="grid3">
+    <div class="box q"><span class="ic" aria-hidden="true">1</span><div><h3>뭘 하는 거예요?</h3><p>의정부에 사는 사람 <b>한 명</b>을 골라요. 그 사람이 하루 중에 <b>어디서 막히는지</b> 찾고, AI로 풀어 봐요. 딱 <b>한 장면</b>이면 돼요.</p></div></div>
+    <div class="box q"><span class="ic" aria-hidden="true">2</span><div><h3>나는 누구예요?</h3><p>공모전에 나간 <b>청소년 개발자</b>예요. 회사도 아니고 시청 직원도 아니에요.</p></div></div>
+    <div class="box q"><span class="ic" aria-hidden="true">3</span><div><h3>누가 봐요?</h3><p>의정부시 담당 어른이랑 <b>동네 주민</b>이요. 기술 모르는 사람도 알아볼 수 있어야 해요.</p></div></div>
+    <div class="box q"><span class="ic" aria-hidden="true">4</span><div><h3>근데 돈도 시간도 없어요</h3><p>진짜로 만들 수는 없어요. 그래서 <b>“이렇게 돌아갈 거예요” 하고 보여 주는 화면</b>만 받아요.</p></div></div>
+    <div class="box q"><span class="ic" aria-hidden="true">5</span><div><h3>뭘 내요?</h3><p><b>설계서 하나.</b> 캔바로 만든 화면 3장도 그 안에 붙여요. 숙제는 없어요.</p></div></div>
+    <div class="box q"><span class="ic" aria-hidden="true">6</span><div><h3>뭘 보고 뽑아요?</h3><p>문제를 <b>숫자로</b> 보여 줬나 · 아이디어를 <b>많이 내고 기준 놓고</b> 골랐나 · 화면이 설계랑 맞나 · 만든 <b>과정을 남겼나</b></p></div></div>
+  </div>
+
+  <h2>이 세 가지는 꼭 지켜요</h2>
+  <div class="rules">
+    <div class="rule"><span class="pill sun">약속 하나</span><b>화면은 딱 3장</b><span>더 만들어도 점수는 안 올라가요.</span></div>
+    <div class="rule"><span class="pill sun">약속 둘</span><b>문제 숫자는 어디서 봤는지 적어요</b><span>앱 화면에 넣는 숫자는 가짜여도 돼요. 근데 <b>문제를 설명하는 숫자</b>는 출처를 꼭 적어요.</span></div>
+    <div class="rule"><span class="pill sun">약속 셋</span><b>“AI가 뭘 하나” 한 문장</b><span>「○○를 넣으면 ○○가 나온다」가 안 써지면 사람이나 장면을 바꿔요.</span></div>
+  </div>
+
+  <h2>궁금한 거</h2>
+  <details><summary>앱이 안 돌아가면 점수 깎여요?</summary>
+    <p>아니요. <b>돌아가는지는 아예 점수에 없어요.</b> 점수는 설계서에 <b>쓴 글</b>에서 나와요. 돌아가면 친구들이 직접 눌러 볼 수 있어서 좋긴 해요.</p></details>
+  <details><summary>코딩해야 돼요?</summary>
+    <p>아니요. 캔바 코드에 <b>말로</b> 설명하면 AI가 화면을 만들어 줘요. 코드는 안 내요.</p></details>
+  <details><summary>AI가 다 만들어 줘도 돼요?</summary>
+    <p>만드는 건 AI가 해도 돼요. 근데 점수는 <b>“내가 뭘 시켰고 어떻게 고쳤나”</b>에서 나와요. 한 번에 잘 나온 사람은 그 칸이 비는데, <b>빈 칸은 점수가 없어요.</b></p></details>
+  <details><summary>그림 못 그리는데요</summary>
+    <p>그림 실력은 안 봐요. 글로만 써도 돼요. <b>화면에 뭐가 보이는지</b>만 알면 돼요.</p></details>
+  <details><summary>친구랑 같이 해도 돼요?</summary>
+    <p>아니요, <b>혼자 해요.</b> 대신 <b>둘째 시간엔 게시판에서 내 번호 +1 · +2번 친구 글에 댓글</b>을 달고, <b>셋째 시간엔 +1번, 넷째 시간엔 +2번 친구 앱을 써 보고 평가</b>를 남겨요. 말로 발표하는 건 없어요.</p></details>
+  <details><summary>시간 안에 못 끝내면요?</summary>
+    <p><b>숙제는 없어요.</b> 그 시간에 쓴 게 그 시간 답이에요.</p></details>
+  <details><summary>다음 시간 거 미리 써도 돼요?</summary>
+    <p>써도 돼요. 근데 장마다 맨 위에 노란 <b>「문 열기」</b> 칸이 있어요. <b>앞 장에서 가져와야 채울 수 있는 칸</b>이라, 여기가 비면 그 장은 점수가 안 돼요. 앞이 바뀌면 미리 쓴 건 <b>다시 써야 해요.</b></p></details>
+  <details><summary>고른 사람 바꿔도 돼요?</summary>
+    <p>첫 시간에 ⑥까지 쓰기 전에는 바꿔도 돼요. ⑥에서 걸리면 그날은 「바꿔요」라고만 쓰고 <b>둘째 시간 맨 처음</b>에 바꿔요. 그다음엔 안 바꿔요.</p></details>
+</section>
+
+<!-- 2 사람 카드 -->
+<section id="s2" hidden aria-labelledby="h-s2">
+  <div id="list">
+    <h2 id="h-s2">의정부에 사는 여덟 사람이에요. 한 명만 골라요</h2>
+    <ol class="howto">
+      <li>카드를 하나씩 눌러 봐요</li>
+      <li>한 명을 골라요</li>
+      <li>설계서 1장 ①에 번호를 적어요</li>
+    </ol>
+    <div class="cards" id="cards"></div>
+    <p class="callout"><span class="pill plum">알아 두기</span><b>「숫자 있어요」</b> 카드는 숫자가 같이 나와요. <b>「직접 찾아요」</b> 카드는 적힌 방법대로 직접 찾거나 세어요. <b>7번</b>은 슬라이드 보기로 계속 나와요 — 골라도 되지만 보기 문장은 그대로 쓸 수 없어요. 못 고르겠으면 <b>1번이나 3번</b>이 쉬워요.</p>
+  </div>
+  <div id="detail" hidden></div>
+</section>
+
+<!-- 3 시간별 할 일 -->
+<section id="s3" hidden aria-labelledby="h-s3">
+  <h2 id="h-s3">몇째 시간이에요? 눌러서 오늘 할 일만 봐요</h2>
+  <div class="hours" role="group" aria-label="차시 고르기">
+    <button id="h9" aria-pressed="true" onclick="hour(9)"><b>첫째 시간</b><span>9차시 · 문제 정하기</span></button>
+    <button id="h10" aria-pressed="false" onclick="hour(10)"><b>둘째 시간</b><span>10차시 · 아이디어</span></button>
+    <button id="h11" aria-pressed="false" onclick="hour(11)"><b>셋째 시간</b><span>11차시 · 앱 만들기</span></button>
+    <button id="h12" aria-pressed="false" onclick="hour(12)"><b>넷째 시간</b><span>12차시 · 고치고 내기</span></button>
+  </div>
+
+  <div id="p9">
+    <p class="lead-in">오늘은 설계서 <b>1장만</b> 채워요. 위에서부터 하나씩요.</p>
+    <ol class="todo">
+      <li><div><b>누구를 골랐나</b><span>「사람 카드 8장」에서 한 명. 번호 · 누구</span><em class="where">설계서 1장 ①</em></div></li>
+      <li><div><b>어디서 막히나</b><span>하루 여섯 칸 중에 한 칸을 고르고, ① 언제 ② 왜 ③ 뭘 못 하나를 채워요</span><em class="where">1장 ②</em></div></li>
+      <li><div><b>나 말고 또 누가 이런가</b><span>숫자 · 언제 거 · 어디서 봤나(카드 맨 아래). 그리고 <b>이 숫자가 내가 고른 사람 얘기가 맞는지</b></span><em class="where">1장 ③</em></div></li>
+      <li><div><b>왜 막히나 · 그래서 어떻게 되나</b><span>원인 셋 중에 하나 골라 쓰고, 세 칸을 따로따로</span><em class="where">1장 ④</em></div></li>
+      <li><div><b>AI가 뭘 하나</b><span>「○○를 넣으면 ○○가 나온다」 한 문장 — <b>둘째 시간에 고른 아이디어로 한 번 다시 써요</b></span><em class="where">1장 ⑤</em></div></li>
+      <li><div><b>다시 맞춰 보기</b><span>세 개가 다 「예」여야 다음 시간으로 가요</span><em class="where">1장 ⑥</em></div></li>
+    </ol>
+    <p class="callout"><span class="pill plum">벌써 다 했어요?</span>두 번째 카드를 골라 같은 문제가 생기는지 봐요. 왜 그렇게 생각하는지 한 줄까지 → 1장 맨 아래</p>
+  </div>
+
+  <div id="p10" hidden>
+    <p class="lead-in">오늘은 설계서 <b>2장 · 3장 · 4장</b>이에요. 게시판은 <a class="pad" href="#padlet" target="_blank" rel="noopener">패들렛 「10차시 아이디어」 열기</a> — <b>내 반 섹션</b>에 올려요.</p>
+    <ol class="todo">
+      <li><div><b>아이디어 펼치기</b><span>앞부분이 정해진 여덟 칸부터. 버릴 것도 지우지 말고 X</span><em class="where">설계서 2장 1~10</em></div></li>
+      <li><div><b>게시판에 올리기</b><span>설계서 3장 ㉮에 먼저 쓰고 → 복사해서 패들렛에 붙여요. 첫 줄은 내 번호</span><em class="where">3장 ㉮</em></div></li>
+      <li><div><b>내 번호 +1번 · +2번 친구 글에 댓글 달기</b><span>첫 줄 내 번호 · 만들 수 있나 O/세모/X · 도움이 되나 O/세모/X · <b>A 이걸 보태면</b> 또는 <b>B 이런 방법도 있다</b>. 글이 없으면 그다음 번호</span></div></li>
+      <li><div><b>내 글에 달린 댓글 옮기기</b><span>좋은 말만 골라 적지 않아요. B는 2장 11 · 12번에도</span><em class="where">3장 ㉯ · 2장 11~12</em></div></li>
+      <li><div><b>하나 고르기</b><span>세 기준 표를 매기고, 고른 것 · 고른 까닭 · 댓글(A든 B든)로 어떻게 고쳤나</span><em class="where">3장 ㉰ ㉱ ㉲</em></div></li>
+      <li><div><b>화면 3장 정하기</b><span>먼저 고른 아이디어로 ⑤ 문장을 다시 쓰고(문 열기), <b>화면 1 → 화면 3 → 화면 2</b></span><em class="where">4장</em></div></li>
+    </ol>
+    <p class="callout"><span class="pill plum">못 온 날이 있었어요?</span>AI한테 이렇게 넣고 받은 답을 3장 ㉯에 옮겨요 — “내 문제는 [1장 ②]야. 내 아이디어는 [㉮의 세 개]야. 각 아이디어를 「만들 수 있나」 「도움이 되나」로 O · 세모 · X 매겨 주고, 「이걸 보태면 더 좋겠다」 하나를 한 줄로 말해 줘.”</p>
+    <p class="callout"><span class="pill plum">벌써 다 했어요?</span>다음 시간 캔바에 넣을 첫 질문을 설계서 5장 4번 「이렇게 물었다」에 미리 써 봐요.</p>
+  </div>
+
+  <div id="p11" hidden>
+    <p class="lead-in">오늘은 <b>캔바 코드</b>로 앱을 만들고, 친구 앱을 써 봐요. 쓰는 곳은 설계서 <b>5장</b>이에요.</p>
+    <ol class="todo">
+      <li><div><b>캔바 켜기 전에 질문 먼저 쓰기</b><span>누가 쓰는지 · 뭘 넣는지 · 뭐가 나오는지를 넣어서</span><em class="where">5장 4번 「이렇게 물었다」</em></div></li>
+      <li><div><b>쓴 그대로 넣어 보기</b><span>나온 걸 보고 「이렇게 나왔다」 「뭐가 문제였나」</span><em class="where">5장 4번</em></div></li>
+      <li><div><b>막힌 질문 나누기</b><span>안 되는 질문을 한 줄 그대로 올려요. 이름은 안 나와요</span><a class="pad" href="#padlet" target="_blank" rel="noopener">패들렛 「11차시 막힌 질문」 열기</a></div></li>
+      <li><div><b>고친 질문 쓰고 다시 넣기</b><span>설계서에 먼저 쓰고 → 복사해서 캔바에</span><em class="where">5장 4번 둘째 줄</em></div></li>
+      <li><div><b>앱 완성하고 세 칸 쓰기</b><span>투입 · 과정 · 산출 (되먹임은 다음 시간)</span><em class="where">5장 3번</em></div></li>
+      <li><div><b>올리고, 내 번호 +1번 친구 앱 써 보기</b><span>패들렛 「11·12차시 앱」에 링크나 캡처를 올리고, +1번 친구 앱에 평가 네 개. 첫 줄은 내 번호</span><a class="pad" href="#padlet" target="_blank" rel="noopener">패들렛 「11·12차시 앱」 열기</a></div></li>
+    </ol>
+    <p class="callout"><span class="pill plum">한 번에 잘 나왔어요?</span>“[내가 고른 사람]이 [1장 ②의 그때]에도 쓸 수 있게 바꿔 줘”라고 물어보고, 나온 걸 5장 4번 둘째 줄에 써요. 그래도 시간이 남으면 5장 1 · 2번을 옮겨 적어요.</p>
+    <div class="side">
+      <div class="box"><h3 style="color:var(--teal)">캔바 코드 여는 법</h3>
+        <p>설계서에 쓴 질문을 복사해요. 캔바 첫 화면 → <b>Code</b> → 대화창에 붙여 넣어요. 고칠 때는 <b>같은 대화창에 이어서</b> 써요. 다 되면 <b>웹사이트로 게시</b>를 눌러 링크를 받아요.</p></div>
+      <div class="box"><h3 style="color:var(--teal)">친구 앱 평가 네 개</h3>
+        <p>0 내 번호 · 1 뭘 넣었더니 뭐가 나왔어요? · 2 만든 사람이 설명한 거랑 같았어요? (같아요/달라요) · 3 쓰다가 제일 오래 걸린 데가 어디예요? · 4 이거 하나만 고치면 훨씬 낫겠다<br><b>“잘했어요”는 쓰지 않아요.</b> 캡처만 올린 앱은 화면을 보고 써요.</p></div>
+    </div>
+  </div>
+
+  <div id="p12" hidden>
+    <p class="lead-in">마지막 시간이에요. <b>고치고, 붙이고, 네 칸을 닫고, 내요.</b> 발표는 없어요. <b>「제출」을 누르면 문서가 잠겨요</b> — 더 쓸 게 있으면 누르기 전에 써요.</p>
+    <ol class="todo">
+      <li><div><b>내 번호 +2번 친구 앱 써 보기</b><span>지난 시간이랑 같은 평가 네 개. 올린 게 없으면 그다음 번호</span><a class="pad" href="#padlet" target="_blank" rel="noopener">패들렛 「11·12차시 앱」 열기</a></div></li>
+      <li><div><b>받은 의견 두 개 옮기기</b><span>그대로 옮겨요. 「달라요」가 있으면 왜 달랐는지 한 줄</span><em class="where">5장 5번</em></div></li>
+      <li><div><b>하나만 골라서 진짜로 고치기</b><span>캔바 대화창에 “친구가 ○○라고 했어. ○○를 바꿔 줘”</span><em class="where">5장 6번</em></div></li>
+      <li><div><b>고친 화면 3장 캡처해서 붙이기</b><span>설계서 5장 3번 아래 세 칸에 하나씩. 화면 2가 금방 사라지면 4장 화면 2 칸을 캡처</span><em class="where">5장 3번 아래</em></div></li>
+      <li><div><b>「되먹임」 칸 쓰기</b><span>나온 걸 본 사람이 다음에 하는 일이, 다시 앱에 들어가요?</span><em class="where">5장 3번 넷째 칸</em></div></li>
+      <li><div><b>빈 칸 확인하고 제출</b><span>설계서 맨 끝 확인표 → 시간이 남으면 안 고친 의견 하나를 5장 6번에 한 줄 더 → 클래스룸에서 「제출」</span><em class="where">6장 끝</em></div></li>
+    </ol>
+    <div class="side">
+      <div class="box"><h3 style="color:var(--teal)">크롬북 캡처</h3>
+        <div class="keys"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>창 여러 개 키 □||</kbd></div>
+        <p>네모로 끌면 저절로 복사돼요. 설계서 칸을 누르고 <kbd>Ctrl</kbd> + <kbd>V</kbd></p></div>
+      <div class="box"><h3 style="color:var(--teal)">되먹임이 어려우면 차례로 물어봐요</h3>
+        <p>① 내 앱에서 나오는 것(산출)은 뭐예요? → ② 그걸 본 사람은 다음에 뭘 해요? → ③ <b>그 행동이 다시 앱에 들어가요?</b> ← 들어가는 길이 되먹임</p></div>
+    </div>
+  </div>
+
+  <h2>네 시간 동안 이렇게 가요</h2>
+  <table class="plan">
+    <tr><th scope="row">첫째 시간</th><td>사람 고르고 <b>문제 정하기</b> — 문제 한 줄 · 숫자 하나 · 「AI가 뭘 하나」 한 문장</td></tr>
+    <tr><th scope="row">둘째 시간</th><td>아이디어 <b>많이 내고 → 올리고 → 댓글 받고 → 하나 고르기</b> → 화면 3장 정하기</td></tr>
+    <tr><th scope="row">셋째 시간</th><td>캔바 코드로 <b>앱 만들기</b> — 물어봤다가 고친 기록(되먹임 ①) · 친구 앱 써 보기</td></tr>
+    <tr><th scope="row">넷째 시간</th><td><b>받은 의견으로 고치기</b>(되먹임 ②) · 화면 붙이기 · 되먹임 칸 · 제출</td></tr>
+  </table>
+</section>
+
+</main>
+
+<footer>호원중학교 3학년 기술 · 정보 통신 기술의 세계 · 9~12차시</footer>
+
+<script>
+const P=[
+ {n:1,who:"최OO 할머니 · 78세",where:"의정부동",
+  what:"식당에 들어갔는데 주문이 <b>기계로만</b> 돼요. 뒤에 줄이 서서 그냥 나왔어요",
+  day:[["아침","경로당 가려고 약을 챙겨요"],["나갈 때","버스 도착 알려 주는 화면 글씨가 작아서 안 보여요"],
+       ["낮","식당 주문이 기계로만 돼요. 뒤에 줄이 서서 그냥 나왔어요"],["오후","병원 예약하려고 전화했는데 안내 목소리가 너무 빨라요"],
+       ["저녁","손주가 보낸 사진을 여는 법을 몰라요"],["밤","약 먹을 시간을 깜빡해요"]],
+  num:"의정부에 65세 넘는 분이 <b>79,378명</b> 살아요.<br>의정부 사람 100명 중에 17명이에요.",
+  when:"2023년 5월 기준이에요. 의정부시는 2026년엔 10만 명쯤(22%) 될 거라고 봤어요.",
+  src:"의정부시청 ui4u.go.kr → 정보공개 → 현황 및 통계 → <b>인구현황</b> → 「만65세이상 연령별 인구현황」"},
+
+ {n:2,who:"이OO · 중학교 1학년",where:"민락동",
+  what:"아침 버스가 꽉 차서 <b>두 대를 보냈어요.</b> 지각했어요",
+  day:[["아침","일어나서 준비해요"],["나갈 때","버스가 꽉 차서 두 대를 보냈어요. 지각했어요"],
+       ["낮","학교에 있어요"],["오후","학원 가는 버스도 똑같아요. 또 기다려요"],
+       ["저녁","집에 오는 버스는 텅텅 비었어요"],["밤","내일 아침도 그럴지 알 수가 없어요"]],
+  blank:true,
+  num:"우리 학교에 다니는 학생이 <b>몇 명</b>이에요?",
+  when:"학교알리미에서 찾은 날짜를 「언제 거」에 적어요. 버스 타는 사람 수는 어디에도 안 나와요 — 그래서 「아니에요」를 골라도 좋은 답이에요.",
+  src:"<b>학교알리미</b> schoolinfo.go.kr → 학교 이름 검색 → 학생 수"},
+
+ {n:3,who:"박OO · 초등학교 2학년",where:"등굣길",
+  what:"큰길 횡단보도 <b>초록불이 짧아서 뛰어요.</b> 차가 돌아서 들어와요",
+  day:[["아침","혼자 집을 나서요"],["나갈 때","큰길 횡단보도 초록불이 짧아요. 뛰어서 건너요"],
+       ["낮","학교에 있어요"],["오후","돌봄교실에 있어요"],
+       ["저녁","같은 길을 또 건너요. 어두워졌어요"],["밤","집에 있어요"]],
+  num:"최근 5년 동안 걸어가던 어린이가 차에 치인 사고가 전국에서 <b>12,824건</b> 일어났어요.<br>다친 어린이의 <b>절반(50.4%)이 오후 2시~6시</b>에 다쳤어요. 하교 시간이에요.",
+  when:"2021~2025년 5년을 다 더한 거예요. 저학년일수록 <b>길 건너다</b> 다치는 경우가 많아요.",
+  src:"도로교통공단 <b>어린이 TAAS</b> taas.koroad.or.kr/childTaas"},
+
+ {n:4,who:"김OO 할아버지 · 70세",where:"아파트",
+  what:"<b>분리배출 날이랑 뭘 어디 넣는지를 몰라요.</b> 봉투 들고 나갔다가 도로 가져왔어요",
+  day:[["아침","오늘이 분리배출 하는 날인지 모르겠어요"],["나갈 때","봉투 들고 나갔다가 도로 가져와요"],
+       ["낮","집에 있어요"],["오후","경비실에 물어보러 갔는데 자리에 없어요"],
+       ["저녁","스티로폼에 붙은 테이프를 떼야 하는지 모르겠어요"],["밤","다음에 언제 버리는지 또 까먹어요"]],
+  blank:true,
+  num:"의정부에서 분리배출할 때 <b>몇 가지로 나눠서</b> 버려야 해요?<br>직접 세어 보세요. <b>할아버지가 이걸 다 외워야 할까요?</b>",
+  when:"세어 본 숫자를 그대로 적어요. 「언제 거」에는 센 날짜(오늘)를 적어요.",
+  src:"의정부시청 ui4u.go.kr → 분야별정보 → <b>자원순환</b> → 분리배출 안내"},
+
+ {n:5,who:"정OO · 중학교 3학년",where:"방과 후",
+  what:"학원 없는 날 <b>갈 데가 없어요.</b> 편의점 앞에 서 있어요",
+  day:[["아침","학교에 가요"],["나갈 때","평소랑 똑같아요"],
+       ["낮","학교에 있어요"],["오후","학원 없는 날이에요. 갈 데가 없어요"],
+       ["저녁","편의점 앞에 서 있어요. 집엔 아무도 없어요"],["밤","집에 들어가요"]],
+  blank:true,
+  num:"경기도에 사는 청소년(9~24세)이 <b>2,107,415명</b>이에요.<br>그럼 <b>의정부에는 몇 명</b>일까요? 그 사람들이 갈 수 있는 <b>청소년 시설은 몇 곳</b>일까요?",
+  when:"경기도 숫자는 2026년 1월 기준이에요. 의정부 숫자는 직접 찾아야 해요.",
+  src:"청소년 수 — 의정부시청 → 정보공개 → 인구현황 → <b>연령별 인구현황</b><br>시설 수 — 의정부시 분야별정보 → 복지 → 아동청소년 → <b>청소년 시설</b> 목록을 세어 보세요"},
+
+ {n:6,who:"한OO 어르신 · 82세",where:"여름",
+  what:"집이 34도인데 <b>쉼터가 어디 있는지를 몰라요</b>",
+  day:[["아침","선풍기를 켜요"],["나갈 때","밖이 더 더울 것 같아서 안 나가요"],
+       ["낮","집 안이 34도예요. 쉼터가 있다는데 어디인지 몰라요"],["오후","주민센터까지 걸어가서 물어봐요"],
+       ["저녁","돌아오는 길이 더 더워요"],["밤","잠을 못 자요"]],
+  blank:true,
+  num:"네이버 지도나 카카오맵 웹사이트에서 <b>‘무더위쉼터’</b>라고 검색해 보세요.<br>우리 동네에 <b>몇 개</b> 떠요?<br><b>그거 알고 있었어요?</b>",
+  when:"몇 개 떴는지 그대로 적어요. 안 뜨면 ‘0개’도 답이에요. 「언제 거」에는 찾은 날짜(오늘)를 적어요.",
+  src:"<b>네이버 지도</b>나 <b>카카오맵</b> 웹사이트 — 크롬북에서 열려요"},
+
+ {n:7,who:"오OO · 45세 · 배달",where:"호원동",
+  what:"눈 온 날 <b>어느 골목이 얼었는지 가 봐야 알아요</b>",
+  day:[["아침","밤새 눈이 왔어요"],["나갈 때","언덕길이 얼어 있어요"],
+       ["낮","어느 골목이 얼었는지 <b>가 봐야 알아요</b>"],["오후","골목에서 넘어질 뻔했어요"],
+       ["저녁","돌아서 다니느라 배달이 밀려요"],["밤","내일 아침도 그럴지 알 수가 없어요"]],
+  num:"최근 5년 동안 <b>길이 얼어서</b> 난 교통사고가 <b>4,112건</b>이에요.<br>그중 <b>78%가 12월이랑 1월</b>에 몰려 있어요.",
+  when:"그런데 눈·비 오는 날보다 <b>맑거나 흐린 날에 더 많이</b> 나요 — <b>살얼음이 눈에 안 보이거든요.</b> 2020~2024년 기준.",
+  src:"도로교통공단 <b>TAAS</b> taas.koroad.or.kr · 행정안전부 발표"},
+
+ {n:8,who:"응OO · 40세 · 어머니",where:"다문화가정",
+  what:"학교에서 온 <b>알림장을 못 읽어요.</b> 준비물을 못 챙겼어요",
+  day:[["아침","아이 가방에 학교에서 온 종이가 들어 있어요"],["나갈 때","일하러 나가요"],
+       ["낮","문장이 길어서 읽기가 어려워요"],["오후","번역기를 돌렸는데 말이 이상하게 나와요"],
+       ["저녁","아이한테 물어봐요. 아이도 잘 몰라요"],["밤","준비물을 못 챙겼어요"]],
+  num:"우리나라에 사는 외국인 주민이 <b>258만 명</b>이에요. 100명 중에 5명꼴이에요.<br>그럼 <b>의정부에는 다문화 학생이 몇 명</b>일까요?",
+  when:"전국 숫자는 2024년 11월 기준이에요. 의정부 숫자는 직접 찾아야 해요. 못 찾으면 「아니에요」를 골라도 좋은 답이에요.",
+  src:"전국 — 행정안전부 발표<br>의정부 — <b>교육통계서비스</b> kess.kedi.re.kr → 다문화학생 → 경기 → 의정부"}
+];
+
+var lastCard = null;
+
+function go(i){
+  for(var k=1;k<=3;k++){
+    document.getElementById('s'+k).hidden=(k!==i);
+    document.getElementById('t'+k).setAttribute('aria-current',k===i?'true':'false');
+  }
+  if(i===2) back(false);
+  window.scrollTo(0,0);
+}
+
+function hour(h){
+  [9,10,11,12].forEach(function(k){
+    document.getElementById('p'+k).hidden=(k!==h);
+    document.getElementById('h'+k).setAttribute('aria-pressed',k===h?'true':'false');
+  });
+}
+
+function drawList(){
+  document.getElementById('cards').innerHTML = P.map(function(c){
+    return '<button class="pcard" id="card'+c.n+'" onclick="openCard('+c.n+')">'+
+      '<span class="row"><span class="n" aria-hidden="true">'+c.n+'</span><span class="who">'+c.n+'번 · '+c.who.split(' · ')[0]+'</span></span>'+
+      '<span class="what">'+c.where+' · '+c.what.replace(/<\/?b>/g,'')+'</span>'+
+      (c.blank?'<span class="pill sun tag">직접 찾아요</span>':'<span class="pill line tag">숫자 있어요</span>')+
+      (c.n===7?'<span class="pill plum tag">수업 보기로 쓰는 사람</span>':'')+
+    '</button>';
+  }).join('');
+}
+
+function openCard(n){
+  var c=P.filter(function(x){return x.n===n;})[0];
+  lastCard=n;
+  var rows=c.day.map(function(d){return '<li><span class="t">'+d[0]+'</span><span class="d">'+d[1]+'</span></li>';}).join('');
+  document.getElementById('detail').innerHTML=
+   '<button class="back" onclick="back(true)">← 여덟 명 다시 보기</button>'+
+   '<div class="dhead"><span class="n" aria-hidden="true">'+c.n+'</span><div><h2 id="dh" tabindex="-1">'+c.n+'번 · '+c.who+'</h2><p>'+c.where+' · '+c.what+'</p></div></div>'+
+   '<div class="detail">'+
+     '<div>'+
+       '<p class="step-t"><span class="no">1</span>이 사람 하루예요</p>'+
+       '<p class="step-d">어디서 막히는지 <b>한 칸만</b> 골라요. 두 칸이 비슷하면 <b>더 자주 일어나는 쪽</b>으로요. → 설계서 1장 ②</p>'+
+       '<ol class="day">'+rows+'</ol>'+
+     '</div>'+
+     '<div>'+
+       '<p class="step-t"><span class="no">2</span>나 말고 또 누가 이래요?</p>'+
+       '<p class="step-d">아래 숫자와 「어디서 봤나」를 옮겨 적어요. → 설계서 1장 ③</p>'+
+       '<div class="num'+(c.blank?' blank':'')+'">'+
+         (c.blank?'<span class="pill sun">직접 찾아요</span>':'<span class="pill teal">숫자 있어요</span>')+
+         '<div class="big">'+c.num+'</div>'+
+         (c.when?'<div class="src">'+c.when+'</div>':'')+
+         '<div class="src"><b>어디서 봤나</b> — '+c.src+'</div>'+
+       '</div>'+
+       '<p class="step-t"><span class="no">3</span>칸을 골랐으면 이렇게 써요</p>'+
+       '<div class="frame"><p class="hint">여기는 누를 수 없어요 — 쓰는 곳은 설계서 1장 ②예요.</p>'+
+         '<div class="ln"><span class="lb">① 언제, 뭘 하려고 할 때</span><span class="bl" aria-hidden="true"></span></div>'+
+         '<div class="ln"><span class="lb">② 왜</span><span class="bl" aria-hidden="true"></span></div>'+
+         '<div class="ln"><span class="lb">③ 그래서 뭘 못 하나</span><span class="bl" aria-hidden="true"></span></div>'+
+         '<p class="ex"><b>보기 · 4번</b>  ① 저녁에 재활용 버리러 갈 때, ② 뭘 어디 넣는지 몰라서 ③ 재활용을 버리지 못한다.</p>'+
+       '</div>'+
+       '<p class="darknote">“불편해요” “힘들어요”로는 안 채워져요. ③은 <b>그 사람이 뭘 못 하는지</b>를 묻거든요.</p>'+
+     '</div>'+
+   '</div>';
+  document.getElementById('list').hidden=true;
+  document.getElementById('detail').hidden=false;
+  window.scrollTo(0,0);
+  document.getElementById('dh').focus();
+}
+
+function back(refocus){
+  document.getElementById('detail').hidden=true;
+  document.getElementById('list').hidden=false;
+  if(refocus && lastCard){ var el=document.getElementById('card'+lastCard); if(el) el.focus(); }
+}
+
+drawList();
+
+/* 주소로 바로 열기 — ?tab=2&card=7 · ?tab=3&hour=11 (선생님이 클래스룸에 링크로 걸 때) */
+(function(){
+  var q={}; location.search.replace(/[?&]([^=&]+)=([^&]*)/g,function(_,k,v){q[k]=v;});
+  if(q.tab) go(+q.tab);
+  if(q.card && +q.card>=1 && +q.card<=8){ go(2); openCard(+q.card); }
+  if(q.hour && [9,10,11,12].indexOf(+q.hour)>=0){ go(3); hour(+q.hour); }
+})();
+</script>
+</body>
+</html>
